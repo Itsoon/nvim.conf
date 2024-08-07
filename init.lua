@@ -24,7 +24,7 @@ if vim.g.neovide then
 		contrast = "", -- can be "hard", "soft" or empty string
 		palette_overrides = {
 			dark0 = "#300a24", -- default background color
-			dark1 = "#300a10",
+			dark1 = "#3D1E33",
 		},
 		overrides = {},
 		dim_inactive = false,

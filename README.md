@@ -16,10 +16,10 @@
 | Delete one word      | `<C-w>`             |
 | Delete entire line   | `<C-u>`             |
 
-| UI | key |
+| UI                    | key          |
 | --------------------- | ------------ |
 | toggle format on save | `<leader>uf` |
-| toggle word wrap     | `<leader>uw`        |
+| toggle word wrap      | `<leader>uw` |
 
 | Enter INSERT MODE                       | Key | Shift Modifier                                              |
 | --------------------------------------- | --- | ----------------------------------------------------------- |
