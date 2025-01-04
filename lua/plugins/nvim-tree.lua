@@ -2,7 +2,7 @@ return {
   "nvim-tree/nvim-tree.lua",
   dependencies = { "nvim-tree/nvim-web-devicons" },
   config = function()
-    local nvimtree = require("nvim-tree")
+    local nvimtree = require "nvim-tree"
 
     -- recommended settings from nvim-tree documentation
     vim.g.loaded_netrw = 1
@@ -13,7 +13,7 @@ return {
     -- vim.cmd([[ highlight NvimTreeFolderArrowOpen guifg=#3FC5FF ]])
 
     -- configure nvim-tree
-    nvimtree.setup({
+    nvimtree.setup {
       view = {
         width = 30,
         relativenumber = false,
@@ -45,7 +45,7 @@ return {
         root_folder_label = false,
         group_empty = true,
         indent_markers = {
-          enable = false,
+          enable = true,
         },
         icons = {
           web_devicons = {
@@ -81,10 +81,10 @@ return {
             folder = {
               arrow_closed = "",
               arrow_open = "",
-              default = "",
-              open = "",
+              default = "",
+              open = "",
               empty = "",
-              empty_open = "",
+              empty_open = "",
               symlink = "",
               symlink_open = "",
             },
@@ -116,7 +116,7 @@ return {
       git = {
         ignore = false,
       },
-    })
+    }
 
     -- set keymaps
     local keymap = vim.keymap -- for conciseness

@@ -1,5 +1,7 @@
 return {
   "fedepujol/move.nvim",
+  event = "VeryLazy",
+
   opts = {
     line = {
       enable = true, -- Enables line movement

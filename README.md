@@ -1,4 +1,4 @@
-# 💤 LazyVim
+# 💤 LazyVim x NvChad
 
 ## CheatSheet
 
@@ -38,3 +38,7 @@
 | **Scrolling by Full Screen**   |                 |
 | Scroll down by a full screen   | `<C-f>`         |
 | Scroll up by a full screen     | `<C-b>`         |
+
+The easiest way I have found to do this is by marking each file you want to move with `m`. This puts a bookmark onto your file. From anywhere perform `bmv` and you can type the location to move your file(s) to.The current directory will be conveniently prefixed before you start typing. This key combo makes for efficient use with bulk moves and single files.
+
+:%s/string_to_replace/new_string/g
