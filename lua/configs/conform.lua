@@ -8,6 +8,8 @@ local options = {
     bash = { "beautysh" },
     toml = { "taplo" },
     markdown = { "prettier", "markdownlint-cli2", "markdown-toc" },
+    json = { "jq" },
+    jsonc = { "jq" },
     ["markdown.mdx"] = { "prettier", "markdownlint-cli2", "markdown-toc" },
   },
 
