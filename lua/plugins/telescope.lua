@@ -1,32 +1,10 @@
 return {
   "nvim-telescope/telescope.nvim",
   cmd = "Telescope",
-  -- enabled = function()
-  --   return vim.pick.want() == "telescope"
-  -- end,
   version = false, -- telescope did only one release, so use HEAD for now
   dependencies = {
     {
       "nvim-telescope/telescope-fzf-native.nvim",
-      -- build = (build_cmd ~= "cmake") and "make"
-      --   or "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
-      -- enabled = build_cmd ~= nil,
-      config = function(plugin)
-        vim.on_load("telescope.nvim", function()
-          local ok, err = pcall(require("telescope").load_extension, "fzf")
-          if not ok then
-            local lib = plugin.dir .. "/build/libfzf." .. (vim.is_win() and "dll" or "so")
-            if not vim.uv.fs_stat(lib) then
-              vim.warn "`telescope-fzf-native.nvim` not built. Rebuilding..."
-              require("lazy").build({ plugins = { plugin }, show = false }):wait(function()
-                vim.info "Rebuilding `telescope-fzf-native.nvim` done.\nPlease restart Neovim."
-              end)
-            else
-              vim.error("Failed to load `telescope-fzf-native.nvim`:\n" .. err)
-            end
-          end
-        end)
-      end,
     },
   },
   keys = {
