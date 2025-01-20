@@ -1,13 +1,13 @@
--- load defaults i.e lua_lsp
+-- Load default configurations from nvchad
 require("nvchad.configs.lspconfig").defaults()
 
 local lspconfig = require "lspconfig"
-
--- EXAMPLE
-local servers = { "html", "cssls", marksman = {} }
 local nvlsp = require "nvchad.configs.lspconfig"
 
--- lsps with default config
+-- List of LSP servers to configure
+local servers = { "html", "cssls", "marksman" }
+
+-- Set up LSP servers with default configuration
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
     on_attach = nvlsp.on_attach,
@@ -16,9 +16,14 @@ for _, lsp in ipairs(servers) do
   }
 end
 
--- configuring single server, example: typescript
--- lspconfig.ts_ls.setup {
---   on_attach = nvlsp.on_attach,
---   on_init = nvlsp.on_init,
---   capabilities = nvlsp.capabilities,
--- }
+-- Return the configuration for the plugin manager
+return {
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      servers = {
+        marksman = {},
+      },
+    },
+  },
+}

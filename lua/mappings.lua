@@ -16,12 +16,16 @@ map("v", "<A-k>", ":MoveBlock(-1)<CR>", opts)
 map("v", "<A-h>", ":MoveHBlock(-1)<CR>", opts)
 map("v", "<A-l>", ":MoveHBlock(1)<CR>", opts)
 
+-- Indentation commands in visual mode
+map("v", ">", ">gv", opts)
+map("v", "<", "<gv", opts)
+
 map("n", ";", ":", { desc = "CMD enter command mode" })
 
 -- quit
 map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit all" })
 
--- resize
+-- moving in windows
 map("t", "<C-h>", "<cmd>wincmd h<cr>", { desc = "Go to left window" })
 map("t", "<C-j>", "<cmd>wincmd j<cr>", { desc = "Go to lower window" })
 map("t", "<C-k>", "<cmd>wincmd k<cr>", { desc = "Go to upper window" })
