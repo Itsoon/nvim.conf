@@ -6,14 +6,14 @@
 local M = {
 
   base46 = {
-    theme = "gruvbox",
     transparency = true,
+    theme = "gruvbox",
     theme_toggle = { "gruvbox", "gatekeeper" },
 
-    -- hl_override = {
-    -- 	Comment = { italic = true },
-    -- 	["@comment"] = { italic = true },
-    -- },
+    hl_override = {
+      Comment = { italic = true },
+      ["@comment"] = { italic = true },
+    },
   },
   ui = {
     statusline = {
@@ -24,6 +24,14 @@ local M = {
       separator_style = "round",
       order = nil,
       modules = nil,
+    },
+    tabufline = {
+      base46_colors = true,
+      enabled = true,
+      lazyload = true,
+      order = { "treeOffset", "buffers", "tabs", "btns" },
+      modules = nil,
+      bufwidth = 21,
     },
   },
   nvdash = {

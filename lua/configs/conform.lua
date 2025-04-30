@@ -1,5 +1,6 @@
 local options = {
   formatters_by_ft = {
+    c = {},
     lua = { "stylua" },
     css = { "prettier" },
     html = { "prettier" },
@@ -33,10 +34,15 @@ local options = {
     },
   },
 
-  format_on_save = {
-    timeout_ms = 500,
-    lsp_fallback = true,
-  },
+  format_on_save = function(bufnr)
+    if _G.enable_format_on_save then
+      return {
+        timeout_ms = 500,
+        lsp_fallback = true,
+      }
+    end
+    return nil
+  end,
 }
 
 return options

@@ -28,20 +28,18 @@ return {
       signs = true,
     }
 
-    -- -- Inlay hints for Neovim 0.10+
-    -- if vim.fn.has "nvim-0.10" == 1 then
-    --   vim.lsp.handlers["textDocument/inlayHint"] = function(_, result, ctx, _)
-    --     if result then
-    --       vim.lsp.inlay_hint(ctx.bufnr, true)
-    --     end
-    --   end
-    -- end
+    -- Inlay hints for Neovim 0.10+
+    if vim.fn.has "nvim-0.10" == 1 then
+      vim.lsp.handlers["textDocument/inlayHint"] = function(_, result, ctx, _)
+        if result then
+          vim.lsp.inlay_hint(ctx.bufnr, true)
+        end
+      end
+    end
 
     -- LSP server configurations
     local servers = {
-      servers = {
-        marksman = {},
-      },
+      marksman = {},
       lua_ls = {
         settings = {
           Lua = {
@@ -56,12 +54,36 @@ return {
       ensure_installed = vim.tbl_keys(servers),
     }
 
+    -- mason_lspconfig.setup_handlers {
+    --   function(server)
+    --     lspconfig[server].setup {
+    --       capabilities = capabilities,
+    --       on_attach = function(_, bufnr)
+    --         -- Keymaps for LSP functionality
+    --         local bufopts = { noremap = true, silent = true, buffer = bufnr }
+    --         vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
+    --         vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
+    --         vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, bufopts)
+    --         vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
+    --         vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
+    --       end,
+    --       settings = servers[server],
+    --     }
+    --   end,
+    -- }
+
     mason_lspconfig.setup_handlers {
       function(server)
-        lspconfig[server].setup {
+        local config = {
           capabilities = capabilities,
-          on_attach = function(_, bufnr)
-            -- Keymaps for LSP functionality
+          on_attach = function(client, bufnr)
+            -- Désactive le formattage si serveur C (clangd)
+            if server == "clangd" then
+              client.server_capabilities.documentFormattingProvider = false
+              client.server_capabilities.documentRangeFormattingProvider = false
+            end
+
+            -- Keymaps
             local bufopts = { noremap = true, silent = true, buffer = bufnr }
             vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
             vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
@@ -71,6 +93,8 @@ return {
           end,
           settings = servers[server],
         }
+
+        lspconfig[server].setup(config)
       end,
     }
   end,

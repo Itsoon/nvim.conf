@@ -17,7 +17,12 @@ return {
       on_attach = function(client, bufnr)
         if client.supports_method "textDocument/formatting" then
           vim.api.nvim_buf_create_user_command(bufnr, "Format", function()
-            vim.lsp.buf.format { bufnr = bufnr }
+            vim.lsp.buf.format {
+              bufnr = bufnr,
+              filter = function(client)
+                return client.name ~= "clangd"
+              end,
+            }
           end, { desc = "Format the current buffer with null-ls" })
         end
       end,
