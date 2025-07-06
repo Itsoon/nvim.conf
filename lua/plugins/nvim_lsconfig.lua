@@ -1,6 +1,6 @@
 return {
   "neovim/nvim-lspconfig",
-  event = { "BufReadPost", "BufNewFile", "BufWritePre" },
+  event = { "VeryLazy" },
   dependencies = {
     "williamboman/mason.nvim",
     { "williamboman/mason-lspconfig.nvim" },
@@ -54,12 +54,37 @@ return {
       ensure_installed = vim.tbl_keys(servers),
     }
 
+    for server, server_config in pairs(servers) do
+      lspconfig[server].setup {
+        capabilities = capabilities,
+        on_attach = function(client, bufnr)
+          if server == "clangd" then
+            client.server_capabilities.documentFormattingProvider = false
+            client.server_capabilities.documentRangeFormattingProvider = false
+          end
+
+          local bufopts = { noremap = true, silent = true, buffer = bufnr }
+          vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
+          vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
+          vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, bufopts)
+          vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
+          vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
+        end,
+        settings = server_config.settings,
+      }
+    end
+
     -- mason_lspconfig.setup_handlers {
     --   function(server)
-    --     lspconfig[server].setup {
+    --     local config = {
     --       capabilities = capabilities,
-    --       on_attach = function(_, bufnr)
-    --         -- Keymaps for LSP functionality
+    --       on_attach = function(client, bufnr)
+    --         if server == "clangd" then
+    --           client.server_capabilities.documentFormattingProvider = false
+    --           client.server_capabilities.documentRangeFormattingProvider = false
+    --         end
+    --
+    --         -- Keymaps
     --         local bufopts = { noremap = true, silent = true, buffer = bufnr }
     --         vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
     --         vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
@@ -69,33 +94,9 @@ return {
     --       end,
     --       settings = servers[server],
     --     }
+    --
+    --     lspconfig[server].setup(config)
     --   end,
     -- }
-
-    mason_lspconfig.setup_handlers {
-      function(server)
-        local config = {
-          capabilities = capabilities,
-          on_attach = function(client, bufnr)
-            -- Désactive le formattage si serveur C (clangd)
-            if server == "clangd" then
-              client.server_capabilities.documentFormattingProvider = false
-              client.server_capabilities.documentRangeFormattingProvider = false
-            end
-
-            -- Keymaps
-            local bufopts = { noremap = true, silent = true, buffer = bufnr }
-            vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
-            vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
-            vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, bufopts)
-            vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
-            vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
-          end,
-          settings = servers[server],
-        }
-
-        lspconfig[server].setup(config)
-      end,
-    }
   end,
 }

@@ -3,19 +3,6 @@ require "nvchad.mappings"
 local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
-map("n", "<A-j>", "<cmd>MoveLine(1)<cr>", opts)
-map("n", "<A-k>", "<cmd>MoveLine(-1)<cr>", opts)
-map("n", "<A-h>", "<cmd>MoveHChar(-1)<cr>", opts)
-map("n", "<A-l>", "<cmd>MoveHChar(1)<cr>", opts)
-map("n", "<leader>wf", "<cmd>MoveWord(1)<cr>", opts)
-map("n", "<leader>wb", "<cmd>MoveWord(-1)<cr>", opts)
-
--- Visual-mode commands
-map("v", "<A-j>", "<cmd>MoveBlock(1)<cr>", opts)
-map("v", "<A-k>", "<cmd>MoveBlock(-1)<cr>", opts)
-map("v", "<A-h>", "<cmd>MoveHBlock(-1)<cr>", opts)
-map("v", "<A-l>", "<cmd>MoveHBlock(1)<cr>", opts)
-
 -- Indentation commands in visual mode
 map("v", ">", ">gv", opts)
 map("v", "<", "<gv", opts)
