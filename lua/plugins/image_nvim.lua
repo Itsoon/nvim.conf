@@ -1,6 +1,7 @@
 return {
   {
     "3rd/image.nvim",
+    ft = { "markdown", "norg", "rmd", "org", "mdx" },
     event = { "BufReadPre", "BufNewFile" },
     config = function()
       require("image").setup {

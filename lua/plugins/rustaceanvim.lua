@@ -54,7 +54,7 @@ return {
     },
   },
   config = function(_, opts)
-    if LazyVim.has "mason.nvim" then
+    if require("lazy.core.config").plugins["mason.nvim"] then
       local package_path = require("mason-registry").get_package("codelldb"):get_install_path()
       local codelldb = package_path .. "/extension/adapter/codelldb"
       local library_path = package_path .. "/extension/lldb/lib/liblldb.dylib"

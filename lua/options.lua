@@ -6,6 +6,7 @@ vim.opt.relativenumber = true
 
 _G.enable_format_on_save = true
 
+-- Format on save
 vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "*.c",
   callback = function()

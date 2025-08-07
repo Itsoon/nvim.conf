@@ -1,5 +1,6 @@
 return {
   "HakonHarnes/img-clip.nvim",
+  ft = { "markdown", "norg", "rmd", "org", "mdx" },
   event = "VeryLazy",
   opts = {
     -- add options here

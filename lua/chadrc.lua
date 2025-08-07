@@ -29,7 +29,7 @@ local M = {
       base46_colors = true,
       enabled = true,
       lazyload = true,
-      order = { "treeOffset", "buffers", "tabs", "btns" },
+      order = { "treeOffset", "tabs", "buffers", "btns" },
       modules = nil,
       bufwidth = 21,
     },
