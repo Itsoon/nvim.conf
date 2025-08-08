@@ -1,13 +1,6 @@
-# 💤 LazyVim x NvChad
+# 💤 LazyVim
 
 ## CheatSheet
-
-| File Manager  | key          |
-| ------------- | ------------ |
-| open / toggle | `<C-n>`      |
-| focus         | `<leader>e`  |
-| collapse      | `<leader>ec` |
-| refresh       | `<leader>er` |
 
 | INSERT MODE          | key                 |
 | -------------------- | ------------------- |
@@ -39,29 +32,17 @@
 | Scroll down by a full screen   | `<C-f>`         |
 | Scroll up by a full screen     | `<C-b>`         |
 
-| Terminal             | Key Combination |
-| -------------------- | --------------- |
-| escape terminal mode | `<C-x>`         |
+| Terminal             | Key Combination   |
+| -------------------- | ----------------- |
+| escape terminal mode | `<C-x>` & `<Esc>` |
 
 ---
-
-### Move file on Neotree
-
-The easiest way I have found to do this is by marking each file you want to move with `m`. This puts a bookmark onto your file. From anywhere perform `bmv` and you can type the location to move your file(s) to.The current directory will be conveniently prefixed before you start typing. This key combo makes for efficient use with bulk moves and single files.
 
 ### Replace one string by another
 
 `:%s/string_to_replace/new_string/g`
 
 ---
-
-Type this command in Neovim to display recent messages:
-
-```
-:messages
-```
-
-👉 This will show you any errors, warnings or information Neovim has displayed recently.
 
     Press Ctrl + o to go back to the previous location in the jump list.
     Press Ctrl + i to go forward in the jump list.

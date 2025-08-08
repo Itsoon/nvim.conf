@@ -1,4 +1,4 @@
-vim.cmd [[
+vim.cmd([[
   highlight RenderMarkdownH1Bg guibg=#8F74EC guifg=#000000 gui=bold
   highlight RenderMarkdownH2Bg guibg=#748CED guifg=#000000 gui=bold
   highlight RenderMarkdownH3Bg guibg=#FB4934 guifg=#000000 gui=bold
@@ -14,12 +14,13 @@ vim.cmd [[
   highlight RenderMarkdownH6 guifg=#98971A gui=bold cterm=bold
 
   highlight RenderMarkdownCode guibg=#181818
-]]
+]])
 
 return {
   "MeanderingProgrammer/render-markdown.nvim",
   dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.icons" },
   opts = {
+    completions = { blink = { enabled = true } },
     heading = {
       enabled = true,
       sign = false,
@@ -73,18 +74,16 @@ return {
       highlight_inline = "RenderMarkdownCodeInline",
       highlight_language = nil,
     },
-    dash = { width = 0.98, left_margin = 0.5 },
     checkbox = {
       checked = { scope_highlight = "@markup.strikethrough" },
     },
     pipe_table = { preset = "round" },
   },
-  ft = { "markdown", "norg", "rmd", "org", "mdx" },
+  ft = { "markdown", "norg", "rmd", "org", "mdx", "markdown.mdx" },
   config = function(_, opts)
     require("render-markdown").setup(opts)
 
-    -- Create a command to toggle Markdown rendering
-    local render_markdown_state = require "render-markdown.state"
+    local render_markdown_state = require("render-markdown.state")
     vim.api.nvim_create_user_command("ToggleRenderMarkdown", function()
       render_markdown_state.enabled = not render_markdown_state.enabled
       if render_markdown_state.enabled then

@@ -8,7 +8,7 @@ return {
     { "<BS>", desc = "Decrement Selection", mode = "x" },
   },
   config = function()
-    require("nvim-treesitter.configs").setup {
+    require("nvim-treesitter.configs").setup({
       highlight = { enable = true },
       indent = { enable = true },
       ensure_installed = {
@@ -73,6 +73,6 @@ return {
           },
         },
       },
-    }
+    })
   end,
 }
