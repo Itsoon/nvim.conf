@@ -46,3 +46,7 @@
 
     Press Ctrl + o to go back to the previous location in the jump list.
     Press Ctrl + i to go forward in the jump list.
+
+---
+
+`SHIFT + H` : snacks explorer hidden file
