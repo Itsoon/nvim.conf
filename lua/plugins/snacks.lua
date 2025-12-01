@@ -7,6 +7,7 @@ return {
       sort = { fields = { "sort" } },
       supports_live = true,
       hidden = true,
+      ignored = false,
       tree = true,
       watch = true,
       diagnostics = true,
@@ -14,22 +15,20 @@ return {
       git_status = true,
       git_status_open = false,
       git_untracked = true,
-      follow_file = true,
-      -- focus = "list",
-      auto_close = false,
       jump = { close = false },
-      layout = { preset = "sidebar", preview = false },
-      -- to show the explorer to the right, add the below to
-      -- your config under `opts.picker.sources.explorer`
-      -- layout = { layout = { position = "right" } },
-      formatters = {
-        file = { filename_only = true },
-        severity = { pos = "right" },
-      },
-      matcher = { sort_empty = false, fuzzy = false },
+      -- layout = { preset = "sidebar", preview = false },
+      -- -- to show the explorer to the right, add the below to
+      -- -- your config under `opts.picker.sources.explorer`
+      -- -- layout = { layout = { position = "right" } },
+      -- formatters = {
+      --   file = { filename_only = true },
+      --   severity = { pos = "right" },
+      -- },
+      -- matcher = { sort_empty = false, fuzzy = false },
       win = {
         list = {
           keys = {
+            ["<a-c>"] = { "toggle_cwd", mode = { "n", "i" } },
             ["<BS>"] = "explorer_up",
             ["l"] = "confirm",
             ["h"] = "explorer_close", -- close directory

@@ -8,11 +8,11 @@ return {
     })
 
     -- Format on save
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      pattern = { "*.c", "*.cpp", "*.h", "*.m", "*.mm" },
-      callback = function()
-        vim.cmd("FormatC42")
-      end,
-    })
+    -- vim.api.nvim_create_autocmd("BufWritePre", {
+    --   pattern = { "*.c", "*.cpp", "*.h", "*.m", "*.mm" },
+    --   callback = function()
+    --     vim.cmd("FormatC42")
+    --   end,
+    -- })
   end,
 }

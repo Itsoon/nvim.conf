@@ -57,3 +57,5 @@ vim.api.nvim_create_autocmd("TermOpen", {
   pattern = "term://*",
   callback = set_terminal_keymaps,
 })
+
+vim.keymap.set("n", "<leader>fc", ":FormatC42<CR>", { noremap = true, silent = true })
