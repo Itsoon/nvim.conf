@@ -59,3 +59,11 @@ vim.api.nvim_create_autocmd("TermOpen", {
 })
 
 vim.keymap.set("n", "<leader>fc", ":FormatC42<CR>", { noremap = true, silent = true })
+
+map("n", "<leader>d", function()
+  vim.diagnostic.open_float(nil, {
+    focus = false,
+    wrap = true,
+    max_width = 80,
+  })
+end, { desc = "Show diagnostics in floating window" })
