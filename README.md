@@ -49,4 +49,4 @@
 
 ---
 
-`SHIFT + H` : snacks explorer hidden file
+SHIFT + H` : snacks explorer hidden file
