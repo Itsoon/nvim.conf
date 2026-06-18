@@ -1,24 +1,7 @@
-vim.cmd([[
-  highlight RenderMarkdownH1Bg guibg=#8F74EC guifg=#000000 gui=bold
-  highlight RenderMarkdownH2Bg guibg=#748CED guifg=#000000 gui=bold
-  highlight RenderMarkdownH3Bg guibg=#FB4934 guifg=#000000 gui=bold
-  highlight RenderMarkdownH4Bg guibg=#FA7D34 guifg=#000000 gui=bold
-  highlight RenderMarkdownH5Bg guibg=#D79921 guifg=#000000 gui=bold
-  highlight RenderMarkdownH6Bg guibg=#98971A guifg=#000000 gui=bold
-
-  highlight RenderMarkdownH1 guifg=#8F74EC gui=bold cterm=bold
-  highlight RenderMarkdownH2 guifg=#748CED gui=bold cterm=bold
-  highlight RenderMarkdownH3 guifg=#FB4934 gui=bold cterm=bold
-  highlight RenderMarkdownH4 guifg=#FA7D34 gui=bold cterm=bold
-  highlight RenderMarkdownH5 guifg=#D79921 gui=bold cterm=bold
-  highlight RenderMarkdownH6 guifg=#98971A gui=bold cterm=bold
-
-  highlight RenderMarkdownCode guibg=#181818
-]])
-
 return {
   "MeanderingProgrammer/render-markdown.nvim",
   dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-mini/mini.icons" },
+  ft = { "markdown", "norg", "rmd", "org", "mdx", "markdown.mdx" },
   opts = {
     completions = { blink = { enabled = true } },
     heading = {
@@ -79,8 +62,23 @@ return {
     },
     pipe_table = { preset = "round" },
   },
-  ft = { "markdown", "norg", "rmd", "org", "mdx", "markdown.mdx" },
   config = function(_, opts)
+    -- heading highlights
+    local hl = vim.api.nvim_set_hl
+    hl(0, "RenderMarkdownH1Bg", { bg = "#8F74EC", fg = "#000000", bold = true })
+    hl(0, "RenderMarkdownH2Bg", { bg = "#748CED", fg = "#000000", bold = true })
+    hl(0, "RenderMarkdownH3Bg", { bg = "#FB4934", fg = "#000000", bold = true })
+    hl(0, "RenderMarkdownH4Bg", { bg = "#FA7D34", fg = "#000000", bold = true })
+    hl(0, "RenderMarkdownH5Bg", { bg = "#D79921", fg = "#000000", bold = true })
+    hl(0, "RenderMarkdownH6Bg", { bg = "#98971A", fg = "#000000", bold = true })
+    hl(0, "RenderMarkdownH1", { fg = "#8F74EC", bold = true })
+    hl(0, "RenderMarkdownH2", { fg = "#748CED", bold = true })
+    hl(0, "RenderMarkdownH3", { fg = "#FB4934", bold = true })
+    hl(0, "RenderMarkdownH4", { fg = "#FA7D34", bold = true })
+    hl(0, "RenderMarkdownH5", { fg = "#D79921", bold = true })
+    hl(0, "RenderMarkdownH6", { fg = "#98971A", bold = true })
+    hl(0, "RenderMarkdownCode", { bg = "#181818" })
+
     require("render-markdown").setup(opts)
 
     local render_markdown_state = require("render-markdown.state")
@@ -93,7 +91,6 @@ return {
       end
     end, {})
 
-    -- Map a key to the command
-    vim.keymap.set("n", "<leader>um", "<cmd>ToggleRenderMarkdown<cr>", { silent = true })
+    vim.keymap.set("n", "<leader>um", "<cmd>ToggleRenderMarkdown<cr>", { silent = true, desc = "Toggle Render Markdown" })
   end,
 }

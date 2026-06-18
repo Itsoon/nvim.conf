@@ -16,28 +16,19 @@ return {
       git_status_open = false,
       git_untracked = true,
       jump = { close = false },
-      -- layout = { preset = "sidebar", preview = false },
-      -- -- to show the explorer to the right, add the below to
-      -- -- your config under `opts.picker.sources.explorer`
-      -- -- layout = { layout = { position = "right" } },
-      -- formatters = {
-      --   file = { filename_only = true },
-      --   severity = { pos = "right" },
-      -- },
-      -- matcher = { sort_empty = false, fuzzy = false },
       win = {
         list = {
           keys = {
             ["<a-c>"] = { "toggle_cwd", mode = { "n", "i" } },
             ["<BS>"] = "explorer_up",
             ["l"] = "confirm",
-            ["h"] = "explorer_close", -- close directory
+            ["h"] = "explorer_close",
             ["a"] = "explorer_add",
             ["d"] = "explorer_del",
             ["r"] = "explorer_rename",
             ["c"] = "explorer_copy",
             ["m"] = "explorer_move",
-            ["o"] = "explorer_open", -- open with system application
+            ["o"] = "explorer_open",
             ["P"] = "toggle_preview",
             ["y"] = { "explorer_yank", mode = { "n", "x" } },
             ["p"] = "explorer_paste",
