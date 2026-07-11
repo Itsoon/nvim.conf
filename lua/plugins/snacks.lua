@@ -1,7 +1,39 @@
 return {
   "folke/snacks.nvim",
+  keys = {
+    {
+      "<leader>z",
+      function()
+        Snacks.zen()
+      end,
+      desc = "Zen Mode",
+    },
+    {
+      "<leader>.",
+      function()
+        Snacks.scratch()
+      end,
+      desc = "Toggle Scratch Buffer",
+    },
+  },
   ---@type snacks.Config
   opts = {
+    -- ── UI / eye-candy ────────────────────────────────────────────────
+    indent = {
+      enabled = true,
+      animate = { enabled = true, duration = { step = 20, total = 300 } },
+      scope = { enabled = true, hl = "SnacksIndentScope" },
+    },
+    scope = { enabled = true },
+    words = { enabled = true }, -- highlight references under cursor
+    dim = { enabled = true }, -- dim inactive code (used by zen)
+    zen = { enabled = true }, -- distraction-free mode
+    statuscolumn = { enabled = true },
+    animate = { enabled = true },
+    input = { enabled = true }, -- prettier vim.ui.input
+    bigfile = { enabled = true }, -- disable heavy features on huge files (speed)
+    quickfile = { enabled = true }, -- render files before plugins load (speed)
+
     picker = {
       finder = "explorer",
       sort = { fields = { "sort" } },

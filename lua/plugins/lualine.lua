@@ -26,10 +26,33 @@ return {
           "diff",
           "diagnostics",
         },
-        lualine_c = { "filename" },
-        lualine_x = { "encoding", "fileformat", "filetype" },
+        lualine_c = {
+          { "filename", path = 1, symbols = { modified = "  ", readonly = " ", unnamed = "" } },
+        },
+        lualine_x = {
+          -- active LSP servers for the current buffer
+          {
+            function()
+              local clients = vim.lsp.get_clients({ bufnr = 0 })
+              if #clients == 0 then
+                return ""
+              end
+              local names = {}
+              for _, c in ipairs(clients) do
+                names[#names + 1] = c.name
+              end
+              return " " .. table.concat(names, ", ")
+            end,
+            color = { fg = "#83a598" },
+          },
+          "encoding",
+          "fileformat",
+          "filetype",
+        },
         lualine_y = { "progress" },
-        lualine_z = { "location" },
+        lualine_z = {
+          { "location", icon = "" },
+        },
       },
     })
   end,
