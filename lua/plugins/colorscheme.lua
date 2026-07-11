@@ -33,6 +33,17 @@ return {
         overrides = {
           CursorLine = { bg = "#3C3836" },
           CursorLineNr = { fg = "#0090FF", bg = "#3C3836", bold = true },
+          -- Clean floats/borders that play nicely with transparent_mode
+          NormalFloat = { bg = "none" },
+          FloatBorder = { fg = "#928374", bg = "none" },
+          FloatTitle = { fg = "#fabd2f", bg = "none", bold = true },
+          -- Subtle winbar / separators
+          WinSeparator = { fg = "#504945", bg = "none" },
+          -- Pmenu (completion) polish
+          Pmenu = { bg = "#282828" },
+          PmenuSel = { fg = "#282828", bg = "#fabd2f", bold = true },
+          -- Telescope/snacks picker borders match the theme
+          TelescopeBorder = { fg = "#928374", bg = "none" },
         },
       })
 
